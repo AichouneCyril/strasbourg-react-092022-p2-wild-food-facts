@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import { useState } from "react";
+
 import SwipeableDrawer from "@mui/material/SwipeableDrawer";
 import { Close } from "@mui/icons-material";
 import { Box } from "@mui/material";
@@ -46,5 +47,5 @@ export default function PageCard({ children }) {
 }
 
 PageCard.propTypes = {
-  children: PropTypes.isRequired,
+  children: PropTypes.node.isRequired,
 };
