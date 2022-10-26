@@ -1,9 +1,10 @@
+import PropTypes from "prop-types";
 import { useState } from "react";
 import SwipeableDrawer from "@mui/material/SwipeableDrawer";
 import { Close } from "@mui/icons-material";
 import { Box } from "@mui/material";
 
-export default function SwipeableTemporaryDrawer({ children }) {
+export default function PageCard({ children }) {
   const [open, setOpen] = useState(true);
 
   const handleClose = () => {
@@ -12,8 +13,9 @@ export default function SwipeableTemporaryDrawer({ children }) {
 
   return (
     <SwipeableDrawer
-      sx={{
-        borderRadius: "25px",
+      PaperProps={{
+        elevation: 0,
+        style: { backgroundColor: "white", borderRadius: "25px 25px 0 0" },
       }}
       anchor="bottom"
       open={open}
@@ -25,15 +27,16 @@ export default function SwipeableTemporaryDrawer({ children }) {
         color="primary"
         sx={{
           position: "absolute",
-          right: "0",
+          right: "1rem",
+          top: "1rem",
         }}
         onClick={handleClose}
       />
 
       <Box
         sx={{
-          minHeight: "85vh",
-          padding: "2rem 1rem",
+          minHeight: "75vh",
+          padding: "4rem 1rem",
         }}
       >
         {children}
@@ -41,3 +44,7 @@ export default function SwipeableTemporaryDrawer({ children }) {
     </SwipeableDrawer>
   );
 }
+
+PageCard.propTypes = {
+  children: PropTypes.isRequired,
+};
