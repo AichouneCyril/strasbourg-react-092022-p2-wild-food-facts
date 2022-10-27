@@ -18,15 +18,14 @@ function ResultsList() {
     <Box>
       {results &&
         results.map((item) => (
-          <>
+          <Box key={item.id}>
             <ResultItem
-              key={item}
               name={item.name}
               category={item.category}
               nutriscore={item.nutriscore}
             />
-            <Divider />
-          </>
+            <Divider textAlign="center" />
+          </Box>
         ))}
     </Box>
   );
