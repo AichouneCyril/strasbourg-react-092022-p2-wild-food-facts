@@ -6,7 +6,7 @@ const filters = ["Vegan", "Ecoscore", "Bio", "Halal", "Sans Gluten"];
 
 const container = {
   border: 2,
-  borderColor: "forestgreen",
+  borderColor: "primary.main",
   borderRadius: "10px",
   padding: ".5rem",
 };

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import { Box, Radio, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import RadioButtonUncheckedIcon from "@mui/icons-material/RadioButtonUnchecked";
 
@@ -14,9 +14,12 @@ function FilterItem({ itemName }) {
   return (
     <Box display="flex" alignItems="center">
       {active ? (
-        <CheckCircleIcon onClick={handleClick} color="primary" />
+        <CheckCircleIcon onClick={handleClick} sx={{ color: "primary.main" }} />
       ) : (
-        <RadioButtonUncheckedIcon onClick={handleClick} color="primary" />
+        <RadioButtonUncheckedIcon
+          onClick={handleClick}
+          sx={{ color: "primary.main" }}
+        />
       )}
       <Typography sx={{ mx: 1, my: 0.2 }}>{itemName}</Typography>
     </Box>
