@@ -1,11 +1,9 @@
 import PropTypes from "prop-types";
-import { useState } from "react";
 import SwipeableDrawer from "@mui/material/SwipeableDrawer";
 import { Close } from "@mui/icons-material";
 import { Box } from "@mui/material";
 
 export default function PageCard({ children, etatOpen, changeOpen }) {
-
   return (
     <SwipeableDrawer
       PaperProps={{
@@ -42,4 +40,6 @@ export default function PageCard({ children, etatOpen, changeOpen }) {
 
 PageCard.propTypes = {
   children: PropTypes.node.isRequired,
+  etatOpen: PropTypes.node.isRequired,
+  changeOpen: PropTypes.node.isRequired,
 };
