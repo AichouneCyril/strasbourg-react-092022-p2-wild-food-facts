@@ -1,7 +1,7 @@
 import FiltersList from "./components/Filters/FiltersList";
 import PageCard from "./components/PageCard";
 import ThemeProvider from "./theme";
-import Home from "./pages/Home"
+import Home from "./pages/Home";
 
 function App() {
   return (
