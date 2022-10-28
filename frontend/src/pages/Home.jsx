@@ -1,36 +1,16 @@
-import Counter from "../components/Counter";
-import logo from "../assets/logo.svg";
+import { Typography, Box } from "@mui/material";
+
 
 export default function Home() {
   return (
-    <header className="App-header">
-      <img src={logo} className="App-logo" alt="logo" />
-      <p>Hello Vite + React !</p>
-
-      <Counter />
-
-      <p>
-        Edit <code>App.jsx</code> and save to test HMR updates.
-      </p>
-      <p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-        {" | "}
-        <a
-          className="App-link"
-          href="https://vitejs.dev/guide/features.html"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Vite Docs
-        </a>
-      </p>
-    </header>
+    <div>
+      <Box sx={{display:"flex", justifyContent: "center", paddingTop: 10, backgroundColor: "primary.main"}}>
+        <Box sx={{ width: '100%', maxWidth: 300, textAlign: "center" }}>
+          <Typography  gutterBottom sx={{ color: "primary.light", fontFamily: "Impact", lineHeight: 0.8, fontSize: 100 }}>
+            WILD FOOD FACTS
+          </Typography>
+        </Box>
+      </Box>
+    </div>
   );
 }
