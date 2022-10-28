@@ -1,17 +1,9 @@
 import PropTypes from "prop-types";
-import { useState } from "react";
-
 import SwipeableDrawer from "@mui/material/SwipeableDrawer";
 import { Close } from "@mui/icons-material";
 import { Box } from "@mui/material";
 
-export default function PageCard({ children }) {
-  const [open, setOpen] = useState(true);
-
-  const handleClose = () => {
-    setOpen(false);
-  };
-
+export default function PageCard({ children, etatOpen, changeOpen }) {
   return (
     <SwipeableDrawer
       PaperProps={{
@@ -19,9 +11,9 @@ export default function PageCard({ children }) {
         style: { backgroundColor: "white", borderRadius: "25px 25px 0 0" },
       }}
       anchor="bottom"
-      open={open}
-      onClose={() => setOpen(false)}
-      onOpen={() => setOpen(true)}
+      open={etatOpen}
+      onClose={() => changeOpen(false)}
+      onOpen={() => changeOpen(true)}
     >
       <Close
         fontSize="large"
@@ -31,7 +23,7 @@ export default function PageCard({ children }) {
           right: "1rem",
           top: "1rem",
         }}
-        onClick={handleClose}
+        onClick={() => changeOpen(false)}
       />
 
       <Box
@@ -48,4 +40,6 @@ export default function PageCard({ children }) {
 
 PageCard.propTypes = {
   children: PropTypes.node.isRequired,
+  etatOpen: PropTypes.node.isRequired,
+  changeOpen: PropTypes.node.isRequired,
 };
