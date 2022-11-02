@@ -1,8 +1,6 @@
 /* eslint-disable react/prop-types */
 import PropTypes from "prop-types";
 import React, { useState } from "react";
-import { ThemeProvider } from "@mui/material";
-import appTheme from "./assets/theme/theme";
 import SearchBar from "./components/SearchBar";
 import "./App.css";
 
@@ -42,12 +40,10 @@ function SearchResult({ newList }) {
 function App() {
   const [data, setData] = useState(dataFood);
   return (
-    <ThemeProvider theme={appTheme}>
-      <div className="App">
-        <SearchBar setList={setData} list={data} dataFood={dataFood} />
-        <SearchResult newList={data} />
-      </div>
-    </ThemeProvider>
+    <div className="App">
+      <SearchBar setList={setData} list={data} dataFood={dataFood} />
+      <SearchResult newList={data} />
+    </div>
   );
 }
 
