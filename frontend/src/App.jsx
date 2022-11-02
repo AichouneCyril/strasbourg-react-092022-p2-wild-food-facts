@@ -1,9 +1,10 @@
-import { useState } from "react";
-import FiltersList from "./components/Filters/FiltersList";
-import PageCard from "./components/PageCard";
-import Navbar from "./components/Navbar";
-import ThemeProvider from "./theme";
-import Home from "./pages/Home";
+/* eslint-disable react/prop-types */
+import PropTypes from "prop-types";
+import React, { useState } from "react";
+import { ThemeProvider } from "@mui/material";
+import appTheme from "./assets/theme/theme";
+import SearchBar from "./components/SearchBar";
+import "./App.css";
 
 const dataFood = [
   { name: "Nutella", details: { score: "D", origin: "United-Sate" } },
@@ -39,25 +40,12 @@ function SearchResult({ newList }) {
 }
 
 function App() {
-
   const [data, setData] = useState(dataFood);
-  const [menu, setMenu] = useState("home");
-  const [open, setOpen] = useState(true);
-  
   return (
-    <ThemeProvider>
+    <ThemeProvider theme={appTheme}>
       <div className="App">
-
-        <Home />
-        <PageCard>
-          <FiltersList />
-        </PageCard>
-        <Navbar changeMenu={setMenu} changeOpen={setOpen} />
-        {menu && menu !== "home" && (
-          <PageCard etatOpen={open} changeOpen={setOpen}>
-            teeteet
-          </PageCard>
-        )}
+        <SearchBar setList={setData} list={data} dataFood={dataFood} />
+        <SearchResult newList={data} />
       </div>
     </ThemeProvider>
   );
