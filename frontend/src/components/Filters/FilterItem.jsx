@@ -4,11 +4,12 @@ import { Box, Typography } from "@mui/material";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import RadioButtonUncheckedIcon from "@mui/icons-material/RadioButtonUnchecked";
 
-function FilterItem({ itemName }) {
-  const [active, setActive] = useState(false);
+function FilterItem({ itemName, isActive, setFilter }) {
+  const [active, setActive] = useState(isActive);
 
   const handleClick = () => {
     setActive(!active);
+    setFilter(itemName);
   };
 
   return (
@@ -28,6 +29,8 @@ function FilterItem({ itemName }) {
 
 FilterItem.propTypes = {
   itemName: PropTypes.string.isRequired,
+  isActive: PropTypes.bool.isRequired,
+  setFilter: PropTypes.func.isRequired,
 };
 
 export default FilterItem;
