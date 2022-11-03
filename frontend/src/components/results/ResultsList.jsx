@@ -7,6 +7,7 @@ import data from "./data.json";
 function ResultsList({ filters }) {
   const [activeFilters, setActiveFilters] = useState([]);
   const [results, setResults] = useState(data.products);
+
   // setting the activefilters depending on the state of filters
   useEffect(() => {
     filters.forEach((filter) => {
@@ -17,25 +18,38 @@ function ResultsList({ filters }) {
     });
   }, [filters]);
 
-  const veganFilter = () => {
+  const veganFilter = (dataparam) => {
     setResults(
-      results.filter(
+      dataparam.filter((result) => result["_keywords"].includes("vegan"))
+    );
+  };
+
+  const ecoFilter = (dataparam) => {
+    setResults(dataparam.filter((result) => result.ecoscore_grade === "a"));
+  };
+
+  const nutriFilter = (dataparam) => {
+    setResults(dataparam.filter((result) => result.nutriscore_grade === "a"));
+  };
+
+  const bioFilter = (dataparam) => {
+    setResults(
+      dataparam.filter(
         (result) =>
-          activeFilters.includes("vegan") ||
-          result["_keywords"].includes("vegan")
+          result["_keywords"].includes("organic") ||
+          result["_keywords"].includes("biologique")
       )
     );
   };
 
-  const ecoFilter = () => {
-    setResults(results.filter((result) => result.ecoscore_grade === "a"));
-  };
-
+  // filtering the data depending on the activeFilters array
   useEffect(() => {
     if (activeFilters.length === 0) setResults(data.products);
-    if (activeFilters.includes("Vegan")) veganFilter();
+    if (activeFilters.includes("Vegan")) veganFilter(results);
     // filtre eco
-    if (activeFilters.includes("Ecoplus")) ecoFilter();
+    if (activeFilters.includes("Ecoplus")) ecoFilter(results);
+    if (activeFilters.includes("Nutriplus")) nutriFilter(results);
+    if (activeFilters.includes("Bio")) bioFilter(results);
   }, [activeFilters]);
 
   return (
