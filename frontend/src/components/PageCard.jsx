@@ -40,6 +40,6 @@ export default function PageCard({ children, etatOpen, changeOpen }) {
 
 PageCard.propTypes = {
   children: PropTypes.node.isRequired,
-  etatOpen: PropTypes.node.isRequired,
-  changeOpen: PropTypes.node.isRequired,
+  etatOpen: PropTypes.bool.isRequired,
+  changeOpen: PropTypes.element.isRequired,
 };

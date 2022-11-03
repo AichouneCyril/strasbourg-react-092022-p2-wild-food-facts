@@ -1,9 +1,9 @@
 import { useState } from "react";
-import FiltersList from "./components/Filters/FiltersList";
 import PageCard from "./components/PageCard";
 import Navbar from "./components/Navbar";
 import ThemeProvider from "./theme";
 import Home from "./pages/Home";
+import SearchResultsPage from "./pages/SearchResultsPage";
 
 function App() {
   const [menu, setMenu] = useState("home");
@@ -11,18 +11,13 @@ function App() {
 
   return (
     <ThemeProvider>
-      <div className="App">
-        <Home />
-        <PageCard>
-          <FiltersList />
+      <Home />
+      <Navbar changeMenu={setMenu} changeOpen={setOpen} />
+      {menu && menu !== "home" && (
+        <PageCard etatOpen={open} changeOpen={setOpen}>
+          <SearchResultsPage />
         </PageCard>
-        <Navbar changeMenu={setMenu} changeOpen={setOpen} />
-        {menu && menu !== "home" && (
-          <PageCard etatOpen={open} changeOpen={setOpen}>
-            teeteet
-          </PageCard>
-        )}
-      </div>
+      )}
     </ThemeProvider>
   );
 }
