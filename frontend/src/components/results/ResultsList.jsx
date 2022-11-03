@@ -20,6 +20,7 @@ function ResultsList({ filters }) {
 
   const veganFilter = (dataparam) => {
     setResults(
+      // eslint-disable-next-line dot-notation
       dataparam.filter((result) => result["_keywords"].includes("vegan"))
     );
   };
@@ -36,7 +37,9 @@ function ResultsList({ filters }) {
     setResults(
       dataparam.filter(
         (result) =>
+          // eslint-disable-next-line dot-notation
           result["_keywords"].includes("organic") ||
+          // eslint-disable-next-line dot-notation
           result["_keywords"].includes("biologique")
       )
     );
