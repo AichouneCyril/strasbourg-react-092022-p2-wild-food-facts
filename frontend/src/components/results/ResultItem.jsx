@@ -4,8 +4,9 @@ import { Box, Card, CardContent, CardMedia, Typography } from "@mui/material";
 import Brightness1Icon from "@mui/icons-material/Brightness1";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
+import notavailable from "../../assets/notavailable.jpeg";
 
-function ResultItem({ name, category, nutriscore }) {
+function ResultItem({ name, image = notavailable, category, nutriscore }) {
   const [isFavorite, setIsFavorite] = useState(false);
 
   const handleClick = () => {
@@ -41,7 +42,7 @@ function ResultItem({ name, category, nutriscore }) {
           component="img"
           height="100px"
           sx={{ width: "8rem", borderRadius: "20px" }}
-          image="https://picsum.photos/200/300"
+          image={image}
           alt="Product"
         />
         <CardContent
@@ -81,6 +82,7 @@ function ResultItem({ name, category, nutriscore }) {
 
 ResultItem.propTypes = {
   name: PropTypes.string.isRequired,
+  image: PropTypes.string.isRequired,
   category: PropTypes.string.isRequired,
   nutriscore: PropTypes.string,
 };
