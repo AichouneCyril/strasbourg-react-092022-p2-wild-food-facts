@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Box } from "@mui/material";
 import FiltersList from "../components/Filters/FiltersList";
 import ResultsList from "../components/results/ResultsList";
+// import { useEffect } from "react";
 
 function SearchResultsPage() {
   const [filtersList, setFiltersList] = useState([
@@ -11,6 +12,10 @@ function SearchResultsPage() {
     { name: "Bio", isActive: false },
     { name: "Halal", isActive: false },
   ]);
+
+  // useEffect(() => {
+  //   console.log(filtersList);
+  // }, [filtersList]);
 
   const handleFilter = (name) => {
     const newState = filtersList.map((filter) => {

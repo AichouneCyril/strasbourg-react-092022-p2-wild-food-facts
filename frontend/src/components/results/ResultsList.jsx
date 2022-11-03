@@ -6,27 +6,36 @@ import data from "./data.json";
 
 function ResultsList({ filters }) {
   const [activeFilters, setActiveFilters] = useState([]);
-
+  const [results, setResults] = useState(data.products);
+  // setting the activefilters depending on the state of filters
   useEffect(() => {
     filters.forEach((filter) => {
-      if (filter.isActive === true)
-        setActiveFilters([...activeFilters, filter.name]);
+      if (filter.isActive && !activeFilters.includes(filter.name))
+        setActiveFilters((prev) => [...prev, filter.name]);
+      else if (!filter.isActive)
+        setActiveFilters((prev) => prev.filter((item) => item !== filter.name));
     });
   }, [filters]);
 
-  const results = data.products;
+  const veganFilter = () => {
+    setResults(
+      results.filter(
+        (result) =>
+          activeFilters.includes("vegan") ||
+          result["_keywords"].includes("vegan")
+      )
+    );
+  };
+
+  const ecoFilter = () => {
+    setResults(results.filter((result) => result.ecoscore_grade === "a"));
+  };
 
   useEffect(() => {
-    console.log("change");
-    // results.filter(
-    //   (result) =>
-    //     activeFilters.includes("vegan") || result["_keywords"].includes("vegan")
-    // );
-    // .filter(
-    //   (result) =>
-    //     !onlyEcoPlus ||
-    //     result.ecoscore_grade === "a" ||
-    //     result.ecoscore_grade === "b")
+    if (activeFilters.length === 0) setResults(data.products);
+    if (activeFilters.includes("Vegan")) veganFilter();
+    // filtre eco
+    if (activeFilters.includes("Ecoplus")) ecoFilter();
   }, [activeFilters]);
 
   return (
