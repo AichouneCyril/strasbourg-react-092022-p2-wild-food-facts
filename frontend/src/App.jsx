@@ -1,4 +1,5 @@
 import { useState } from "react";
+import ComparePage from "./components/CompareElments/ComparePage";
 import FiltersList from "./components/Filters/FiltersList";
 import PageCard from "./components/PageCard";
 import Navbar from "./components/Navbar";
@@ -19,7 +20,7 @@ function App() {
         <Navbar changeMenu={setMenu} changeOpen={setOpen} />
         {menu && menu !== "home" && (
           <PageCard etatOpen={open} changeOpen={setOpen}>
-            teeteet
+            <ComparePage />
           </PageCard>
         )}
       </div>
