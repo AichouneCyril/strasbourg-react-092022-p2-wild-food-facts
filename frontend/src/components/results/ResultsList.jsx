@@ -3,10 +3,12 @@ import PropTypes from "prop-types";
 import { Box, Divider } from "@mui/material";
 import ResultItem from "./ResultItem";
 import data from "./data.json";
+import ItemFiche from "../itemfiche";
 
 function ResultsList({ filters }) {
   const [activeFilters, setActiveFilters] = useState([]);
   const [results, setResults] = useState(data.products);
+  const [productDisplayedId, setDisplayedProductId] = useState(null);
 
   // setting the activefilters depending on the state of filters
   useEffect(() => {
@@ -55,16 +57,33 @@ function ResultsList({ filters }) {
     if (activeFilters.includes("Bio")) bioFilter(results);
   }, [activeFilters]);
 
+  const getProductInformations = (id) => {
+    const info = results.filter((result) => Number(result.id) === Number(id));
+    return info[0];
+  };
+
+  const handleDisplayProduct = (id) => {
+    console.warn(id);
+    getProductInformations(id);
+    setDisplayedProductId(id);
+  };
+
   return (
     <Box>
-      {results &&
+      {productDisplayedId && (
+        <ItemFiche product={getProductInformations(productDisplayedId)} />
+      )}
+      {!productDisplayedId &&
+        results &&
         results.map((item) => (
           <Box key={item.id}>
             <ResultItem
               name={item.product_name}
+              id={item.id}
               image={item.selected_images.front.small.fr}
               category={item.category_properties["ciqual_food_name:fr"]}
               nutriscore={item.nutriscore_grade.toUpperCase()}
+              displayProduct={handleDisplayProduct}
             />
             <Divider textAlign="center" />
           </Box>

@@ -1,12 +1,24 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { Box, Card, CardContent, CardMedia, Typography } from "@mui/material";
+// import {
+//   Brightness1Icon,
+//   FavoriteBorderIcon,
+//   FavoriteIcon,
+// } from "@mui/icons-material";
 import Brightness1Icon from "@mui/icons-material/Brightness1";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import notavailable from "../../assets/notavailable.jpeg";
 
-function ResultItem({ name, image = notavailable, category, nutriscore }) {
+function ResultItem({
+  name,
+  id,
+  image = notavailable,
+  category,
+  nutriscore,
+  displayProduct,
+}) {
   const [isFavorite, setIsFavorite] = useState(false);
 
   const handleClick = () => {
@@ -26,6 +38,7 @@ function ResultItem({ name, image = notavailable, category, nutriscore }) {
 
   return (
     <Card
+      onClick={() => displayProduct(id)}
       sx={{
         boxShadow: "none",
         minHeight: "100px",
@@ -82,9 +95,11 @@ function ResultItem({ name, image = notavailable, category, nutriscore }) {
 
 ResultItem.propTypes = {
   name: PropTypes.string.isRequired,
+  id: PropTypes.number.isRequired,
   image: PropTypes.string.isRequired,
   category: PropTypes.string.isRequired,
   nutriscore: PropTypes.string,
+  displayProduct: PropTypes.func.isRequired,
 };
 
 ResultItem.defaultProps = {
