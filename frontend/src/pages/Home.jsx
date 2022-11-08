@@ -1,5 +1,5 @@
-import SearchBar from "../components/SearchBar";
 import { Typography, Box } from "@mui/material";
+import SearchBar from "../components/SearchBar";
 
 export default function Home() {
   return (
