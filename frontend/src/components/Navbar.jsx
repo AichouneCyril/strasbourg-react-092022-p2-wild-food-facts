@@ -61,6 +61,6 @@ export default function Navbar({ changeMenu, changeOpen }) {
 }
 
 Navbar.propTypes = {
-  changeMenu: PropTypes.element.isRequired,
-  changeOpen: PropTypes.element.isRequired,
+  changeMenu: PropTypes.func.isRequired,
+  changeOpen: PropTypes.func.isRequired,
 };
