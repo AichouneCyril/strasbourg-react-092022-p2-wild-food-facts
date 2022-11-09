@@ -2,13 +2,17 @@ import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { Box, Divider } from "@mui/material";
 import ResultItem from "./ResultItem";
-import data from "./data.json";
+// import data from "./data.json";
 import ItemFiche from "../itemfiche";
 
-function ResultsList({ filters }) {
+function ResultsList({ filters, data }) {
   const [activeFilters, setActiveFilters] = useState([]);
-  const [results, setResults] = useState(data.products);
+  const [results, setResults] = useState([]);
   const [productDisplayedId, setDisplayedProductId] = useState(null);
+
+  useEffect(() => {
+    setResults(data);
+  }, [data]);
 
   // setting the activefilters depending on the state of filters
   useEffect(() => {
@@ -49,7 +53,7 @@ function ResultsList({ filters }) {
 
   // filtering the data depending on the activeFilters array
   useEffect(() => {
-    if (activeFilters.length === 0) setResults(data.products);
+    if (activeFilters.length === 0) setResults(data);
     if (activeFilters.includes("Vegan")) veganFilter(results);
     // filtre eco
     if (activeFilters.includes("Ecoplus")) ecoFilter(results);

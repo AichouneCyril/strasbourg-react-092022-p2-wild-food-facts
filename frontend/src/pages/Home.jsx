@@ -1,7 +1,7 @@
 import { Typography, Box } from "@mui/material";
-import SearchBar from "../components/SearchBar";
+import Search from "../components/Search";
 
-export default function Home() {
+export default function Home({ setData }) {
   return (
     <div>
       <Box
@@ -35,7 +35,7 @@ export default function Home() {
             WILD FOOD FACTS
           </Typography>
         </Box>
-        <SearchBar />
+        <Search setData={setData} />
       </Box>
     </div>
   );

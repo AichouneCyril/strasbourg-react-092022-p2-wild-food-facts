@@ -1,4 +1,5 @@
 import * as React from "react";
+import axios from "axios";
 import { useState } from "react";
 import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
@@ -40,27 +41,43 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-export default function SearchBar({ query, setQuery }) {
+export default function SearchBar({ setData }) {
   const [value, setValue] = useState("");
 
   const handleChange = (event) => {
     setValue(event.target.value);
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    axios
+      .get(
+        `https://fr.openfoodfacts.org/cgi/search.pl?action=process&tagtype_0=categories&tag_contains_0=contains&tag_0=${value}&json=1`
+      )
+      .then((response) => {
+        setData(response.data.products);
+      })
+      .catch((error) => {
+        console.warn(error);
+      });
+  };
+
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <SearchStyle>
-        <SearchIconWrapper>
-          <SearchIcon />
-        </SearchIconWrapper>
-        <StyledInputBase
-          placeholder="Recherche ...."
-          onChange={handleChange}
-          value={value}
-          inputProps={{ "aria-label": "search" }}
-          sx={{ color: "#6666" }}
-        />
-      </SearchStyle>
+      <form onSubmit={(e) => handleSubmit(e)}>
+        <SearchStyle>
+          <SearchIconWrapper>
+            <SearchIcon />
+          </SearchIconWrapper>
+          <StyledInputBase
+            placeholder="Recherche ..."
+            onChange={handleChange}
+            value={value}
+            inputProps={{ "aria-label": "search" }}
+            sx={{ color: "#6666" }}
+          />
+        </SearchStyle>
+      </form>
     </Box>
   );
 }
