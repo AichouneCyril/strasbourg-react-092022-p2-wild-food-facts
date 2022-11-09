@@ -103,6 +103,7 @@ ResultsList.propTypes = {
       isActive: PropTypes.bool.isRequired,
     })
   ).isRequired,
+  data: PropTypes.arrayOf(PropTypes.obj).isRequired,
 };
 
 export default ResultsList;

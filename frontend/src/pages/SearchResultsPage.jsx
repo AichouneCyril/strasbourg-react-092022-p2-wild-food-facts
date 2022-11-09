@@ -1,8 +1,9 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 import { Box } from "@mui/material";
 import FiltersList from "../components/Filters/FiltersList";
 import ResultsList from "../components/results/ResultsList";
-import Search from "../components/Search";
+import SearchBar from "../components/SearchBar";
 
 function SearchResultsPage({ data, setData }) {
   const [filtersList, setFiltersList] = useState([
@@ -24,11 +25,15 @@ function SearchResultsPage({ data, setData }) {
 
   return (
     <Box display="flex" flexDirection="column" alignItems="center" gap=".5rem">
-      <Search setData={setData} />
+      <SearchBar setData={setData} />
       <FiltersList filters={filtersList} setFilter={handleFilter} />
       <ResultsList data={data} filters={filtersList} />
     </Box>
   );
 }
+SearchResultsPage.propTypes = {
+  data: PropTypes.arrayOf(PropTypes.obj).isRequired,
+  setData: PropTypes.func.isRequired,
+};
 
 export default SearchResultsPage;

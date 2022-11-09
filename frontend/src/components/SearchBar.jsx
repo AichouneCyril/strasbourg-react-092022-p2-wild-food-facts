@@ -1,6 +1,7 @@
 import * as React from "react";
-import axios from "axios";
 import { useState } from "react";
+import axios from "axios";
+import PropTypes from "prop-types";
 import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import InputBase from "@mui/material/InputBase";
@@ -81,3 +82,7 @@ export default function SearchBar({ setData }) {
     </Box>
   );
 }
+
+SearchBar.propTypes = {
+  setData: PropTypes.func.isRequired,
+};

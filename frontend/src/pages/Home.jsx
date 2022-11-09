@@ -1,5 +1,7 @@
 import { Typography, Box } from "@mui/material";
-import Search from "../components/Search";
+import PropTypes from "prop-types";
+
+import SearchBar from "../components/SearchBar";
 
 export default function Home({ setData }) {
   return (
@@ -35,8 +37,12 @@ export default function Home({ setData }) {
             WILD FOOD FACTS
           </Typography>
         </Box>
-        <Search setData={setData} />
+        <SearchBar setData={setData} />
       </Box>
     </div>
   );
 }
+
+Home.propTypes = {
+  setData: PropTypes.func.isRequired,
+};
