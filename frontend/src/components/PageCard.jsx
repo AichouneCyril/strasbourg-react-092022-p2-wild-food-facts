@@ -8,7 +8,11 @@ export default function PageCard({ children, etatOpen, changeOpen }) {
     <SwipeableDrawer
       PaperProps={{
         elevation: 0,
-        style: { backgroundColor: "white", borderRadius: "25px 25px 0 0" },
+        style: {
+          backgroundColor: "white",
+          borderRadius: "25px 25px 0 0",
+          maxHeight: "90vh",
+        },
       }}
       anchor="bottom"
       open={etatOpen}

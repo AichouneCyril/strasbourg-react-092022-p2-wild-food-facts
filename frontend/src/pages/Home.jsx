@@ -1,4 +1,5 @@
 import { Typography, Box } from "@mui/material";
+import SearchBar from "../components/SearchBar";
 
 export default function Home() {
   return (
@@ -6,8 +7,12 @@ export default function Home() {
       <Box
         sx={{
           display: "flex",
-          justifyContent: "center",
+          flexDirection: "column",
+          justifyContent: "space-between",
+          alignItems: "center",
+          gap: "2rem",
           paddingTop: 10,
+          minHeight: "100vh",
           backgroundColor: "primary.main",
         }}
       >
@@ -30,6 +35,7 @@ export default function Home() {
             WILD FOOD FACTS
           </Typography>
         </Box>
+        <SearchBar />
       </Box>
     </div>
   );

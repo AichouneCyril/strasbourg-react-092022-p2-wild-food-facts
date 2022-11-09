@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Box } from "@mui/material";
 import FiltersList from "../components/Filters/FiltersList";
 import ResultsList from "../components/results/ResultsList";
+import SearchBar from "../components/SearchBar";
 
 function SearchResultsPage() {
   const [filtersList, setFiltersList] = useState([
@@ -23,7 +24,7 @@ function SearchResultsPage() {
 
   return (
     <Box display="flex" flexDirection="column" alignItems="center" gap=".5rem">
-      <input type="text" />
+      <SearchBar />
       <FiltersList filters={filtersList} setFilter={handleFilter} />
       <ResultsList filters={filtersList} />
     </Box>
