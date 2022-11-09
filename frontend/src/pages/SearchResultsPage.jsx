@@ -5,7 +5,7 @@ import FiltersList from "../components/Filters/FiltersList";
 import ResultsList from "../components/results/ResultsList";
 import SearchBar from "../components/SearchBar";
 
-function SearchResultsPage({ data, setData }) {
+function SearchResultsPage({ query, setQuery, data, setData }) {
   const [filtersList, setFiltersList] = useState([
     { name: "Vegan", isActive: false },
     { name: "Ecoplus", isActive: false },
@@ -25,13 +25,15 @@ function SearchResultsPage({ data, setData }) {
 
   return (
     <Box display="flex" flexDirection="column" alignItems="center" gap=".5rem">
-      <SearchBar setData={setData} />
+      <SearchBar setData={setData} query={query} setQuery={setQuery} />
       <FiltersList filters={filtersList} setFilter={handleFilter} />
       <ResultsList data={data} filters={filtersList} />
     </Box>
   );
 }
 SearchResultsPage.propTypes = {
+  query: PropTypes.string.isRequired,
+  setQuery: PropTypes.func.isRequired,
   data: PropTypes.arrayOf(PropTypes.obj).isRequired,
   setData: PropTypes.func.isRequired,
 };

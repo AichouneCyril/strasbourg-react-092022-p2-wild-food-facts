@@ -1,5 +1,4 @@
 import * as React from "react";
-import { useState } from "react";
 import axios from "axios";
 import PropTypes from "prop-types";
 import { styled } from "@mui/material/styles";
@@ -42,18 +41,24 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-export default function SearchBar({ setData }) {
-  const [value, setValue] = useState("");
-
+export default function SearchBar({
+  query,
+  setQuery,
+  setData,
+  setMenu = null,
+  setOpenCard = null,
+}) {
   const handleChange = (event) => {
-    setValue(event.target.value);
+    setQuery(event.target.value);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (setMenu) setMenu("search");
+    if (setOpenCard) setOpenCard(true);
     axios
       .get(
-        `https://fr.openfoodfacts.org/cgi/search.pl?action=process&tagtype_0=categories&tag_contains_0=contains&tag_0=${value}&json=1`
+        `https://fr.openfoodfacts.org/cgi/search.pl?action=process&tagtype_0=categories&tag_contains_0=contains&tag_0=${query}&json=1`
       )
       .then((response) => {
         setData(response.data.products);
@@ -73,7 +78,7 @@ export default function SearchBar({ setData }) {
           <StyledInputBase
             placeholder="Recherche ..."
             onChange={handleChange}
-            value={value}
+            value={query}
             inputProps={{ "aria-label": "search" }}
             sx={{ color: "#6666" }}
           />
@@ -84,5 +89,14 @@ export default function SearchBar({ setData }) {
 }
 
 SearchBar.propTypes = {
+  query: PropTypes.string.isRequired,
+  setQuery: PropTypes.func.isRequired,
   setData: PropTypes.func.isRequired,
+  setMenu: PropTypes.func,
+  setOpenCard: PropTypes.func,
+};
+
+SearchBar.defaultProps = {
+  setMenu: null,
+  setOpenCard: null,
 };

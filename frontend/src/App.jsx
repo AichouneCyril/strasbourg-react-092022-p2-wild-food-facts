@@ -9,19 +9,31 @@ import SearchResultsPage from "./pages/SearchResultsPage";
 function App() {
   const [menu, setMenu] = useState("home");
   const [open, setOpen] = useState(true);
+  const [query, setQuery] = useState("");
   const [data, setData] = useState();
 
   return (
     <ThemeProvider>
       <div className="App">
-        <Home setData={setData} />
+        <Home
+          setData={setData}
+          setOpenCard={setOpen}
+          setMenu={setMenu}
+          query={query}
+          setQuery={setQuery}
+        />
         {/* <PageCard>
           <FiltersList />
         </PageCard> */}
         <Navbar changeMenu={setMenu} changeOpen={setOpen} />
         {menu && menu !== "home" && (
-          <PageCard etatOpen={open} changeOpen={setOpen}>
-            <SearchResultsPage data={data} setData={setData} />
+          <PageCard changeMenu={setMenu} etatOpen={open} changeOpen={setOpen}>
+            <SearchResultsPage
+              data={data}
+              setData={setData}
+              query={query}
+              setQuery={setQuery}
+            />
           </PageCard>
         )}
       </div>
