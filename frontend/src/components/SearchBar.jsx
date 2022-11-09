@@ -1,6 +1,3 @@
-/* eslint-disable react/jsx-props-no-spreading */
-/* eslint-disable react/prop-types */
-/* eslint-disable no-use-before-define */
 import * as React from "react";
 import { useState } from "react";
 import { styled } from "@mui/material/styles";
@@ -8,7 +5,7 @@ import Box from "@mui/material/Box";
 import InputBase from "@mui/material/InputBase";
 import SearchIcon from "@mui/icons-material/Search";
 
-const Search = styled("div")(({ theme }) => ({
+const SearchStyle = styled("div")(({ theme }) => ({
   position: "relative",
   borderRadius: theme.shape.borderRadius,
   backgroundColor: "#F4F4F4",
@@ -43,21 +40,16 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-export default function SearchBar({ setList, list, dataFood }) {
+export default function SearchBar({ query, setQuery }) {
   const [value, setValue] = useState("");
 
   const handleChange = (event) => {
-    const searchWord = event.target.value;
-    setValue(searchWord);
-    const filterList = list.filter((item) =>
-      item.name.toLowerCase().includes(value.toLowerCase())
-    );
-    setList(searchWord ? filterList : dataFood);
+    setValue(event.target.value);
   };
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <Search>
+      <SearchStyle>
         <SearchIconWrapper>
           <SearchIcon />
         </SearchIconWrapper>
@@ -68,7 +60,7 @@ export default function SearchBar({ setList, list, dataFood }) {
           inputProps={{ "aria-label": "search" }}
           sx={{ color: "#6666" }}
         />
-      </Search>
+      </SearchStyle>
     </Box>
   );
 }
