@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 // import FiltersList from "./components/Filters/FiltersList";
 import PageCard from "./components/PageCard";
 import Navbar from "./components/Navbar";
