@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import * as React from "react";
 import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
@@ -10,10 +9,9 @@ import SupprUser from "./SupprUser";
 import NameInscrit from "./NameInscrit";
 import EmailInscrit from "./EmailInscrit";
 
-
 export default function SimpleAccordion() {
   return (
-    <Box sx={{width: "40vh", paddingTop: "10vh"}}>
+    <Box sx={{ width: "40vh", paddingTop: "10vh" }}>
       <Accordion>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
@@ -23,8 +21,8 @@ export default function SimpleAccordion() {
           <Typography>Edit Profil</Typography>
         </AccordionSummary>
         <AccordionDetails>
-        <NameInscrit />
-        <EmailInscrit />
+          <NameInscrit />
+          <EmailInscrit />
         </AccordionDetails>
       </Accordion>
       <Accordion>
@@ -36,7 +34,7 @@ export default function SimpleAccordion() {
           <Typography>Settings</Typography>
         </AccordionSummary>
         <AccordionDetails>
-        <SupprUser />
+          <SupprUser />
         </AccordionDetails>
       </Accordion>
       <Accordion>
@@ -50,11 +48,15 @@ export default function SimpleAccordion() {
         <AccordionDetails>
           <Typography>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-            malesuada lacus ex, sit amet blandit leo lobortis eget. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-            malesuada lacus ex, sit amet blandit leo lobortis eget. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-            malesuada lacus ex, sit amet blandit leo lobortis eget. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-            malesuada lacus ex, sit amet blandit leo lobortis eget. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-            malesuada lacus ex, sit amet blandit leo lobortis eget.
+            malesuada lacus ex, sit amet blandit leo lobortis eget. Lorem ipsum
+            dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada
+            lacus ex, sit amet blandit leo lobortis eget. Lorem ipsum dolor sit
+            amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
+            sit amet blandit leo lobortis eget. Lorem ipsum dolor sit amet,
+            consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit
+            amet blandit leo lobortis eget. Lorem ipsum dolor sit amet,
+            consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit
+            amet blandit leo lobortis eget.
           </Typography>
         </AccordionDetails>
       </Accordion>

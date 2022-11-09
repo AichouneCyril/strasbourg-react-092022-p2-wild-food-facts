@@ -10,7 +10,7 @@ export default function ConnectCard({ children, etatOpen, changeOpen }) {
     <SwipeableDrawer
       PaperProps={{
         elevation: 0,
-        style: { backgroundColor: "white", borderRadius: "25px 25px 0 0" },
+        style: { borderRadius: "25px 25px 0 0" },
       }}
       anchor="right"
       open={etatOpen}
@@ -31,7 +31,7 @@ export default function ConnectCard({ children, etatOpen, changeOpen }) {
       <Box
         sx={{
           left: "75vh",
-          padding: "4rem 10rem",
+          paddingLeft: "0",
         }}
       >
         {children}
