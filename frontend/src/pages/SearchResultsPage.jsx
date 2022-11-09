@@ -1,10 +1,11 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 import { Box } from "@mui/material";
 import FiltersList from "../components/Filters/FiltersList";
 import ResultsList from "../components/results/ResultsList";
 import SearchBar from "../components/SearchBar";
 
-function SearchResultsPage() {
+function SearchResultsPage({ query, setQuery, data, setData }) {
   const [filtersList, setFiltersList] = useState([
     { name: "Vegan", isActive: false },
     { name: "Ecoplus", isActive: false },
@@ -24,11 +25,17 @@ function SearchResultsPage() {
 
   return (
     <Box display="flex" flexDirection="column" alignItems="center" gap=".5rem">
-      <SearchBar />
+      <SearchBar setData={setData} query={query} setQuery={setQuery} />
       <FiltersList filters={filtersList} setFilter={handleFilter} />
-      <ResultsList filters={filtersList} />
+      <ResultsList data={data} filters={filtersList} />
     </Box>
   );
 }
+SearchResultsPage.propTypes = {
+  query: PropTypes.string.isRequired,
+  setQuery: PropTypes.func.isRequired,
+  data: PropTypes.arrayOf(PropTypes.obj).isRequired,
+  setData: PropTypes.func.isRequired,
+};
 
 export default SearchResultsPage;

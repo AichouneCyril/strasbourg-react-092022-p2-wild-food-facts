@@ -1,7 +1,15 @@
 import { Typography, Box } from "@mui/material";
+import PropTypes from "prop-types";
+
 import SearchBar from "../components/SearchBar";
 
-export default function Home() {
+export default function Home({
+  query,
+  setQuery,
+  setData,
+  setMenu,
+  setOpenCard,
+}) {
   return (
     <div>
       <Box
@@ -35,8 +43,27 @@ export default function Home() {
             WILD FOOD FACTS
           </Typography>
         </Box>
-        <SearchBar />
+        <SearchBar
+          setData={setData}
+          setMenu={setMenu}
+          query={query}
+          setQuery={setQuery}
+          setOpenCard={setOpenCard}
+        />
       </Box>
     </div>
   );
 }
+
+Home.propTypes = {
+  query: PropTypes.string.isRequired,
+  setQuery: PropTypes.func.isRequired,
+  setData: PropTypes.func.isRequired,
+  setMenu: PropTypes.func,
+  setOpenCard: PropTypes.func,
+};
+
+Home.defaultProps = {
+  setMenu: null,
+  setOpenCard: null,
+};

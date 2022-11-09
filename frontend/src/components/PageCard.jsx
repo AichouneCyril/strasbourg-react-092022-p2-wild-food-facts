@@ -3,7 +3,17 @@ import SwipeableDrawer from "@mui/material/SwipeableDrawer";
 import { Close } from "@mui/icons-material";
 import { Box } from "@mui/material";
 
-export default function PageCard({ children, etatOpen, changeOpen }) {
+export default function PageCard({
+  children,
+  etatOpen,
+  changeOpen,
+  changeMenu,
+}) {
+  const handleClose = () => {
+    changeOpen(false);
+    changeMenu("home");
+  };
+
   return (
     <SwipeableDrawer
       PaperProps={{
@@ -16,7 +26,7 @@ export default function PageCard({ children, etatOpen, changeOpen }) {
       }}
       anchor="bottom"
       open={etatOpen}
-      onClose={() => changeOpen(false)}
+      onClose={handleClose}
       onOpen={() => changeOpen(true)}
     >
       <Close
@@ -46,4 +56,5 @@ PageCard.propTypes = {
   children: PropTypes.node.isRequired,
   etatOpen: PropTypes.bool.isRequired,
   changeOpen: PropTypes.element.isRequired,
+  changeMenu: PropTypes.func.isRequired,
 };
