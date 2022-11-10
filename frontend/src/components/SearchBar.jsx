@@ -1,14 +1,12 @@
-/* eslint-disable react/jsx-props-no-spreading */
-/* eslint-disable react/prop-types */
-/* eslint-disable no-use-before-define */
 import * as React from "react";
-import { useState } from "react";
+import axios from "axios";
+import PropTypes from "prop-types";
 import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import InputBase from "@mui/material/InputBase";
 import SearchIcon from "@mui/icons-material/Search";
 
-const Search = styled("div")(({ theme }) => ({
+const SearchStyle = styled("div")(({ theme }) => ({
   position: "relative",
   borderRadius: theme.shape.borderRadius,
   backgroundColor: "#F4F4F4",
@@ -43,32 +41,62 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-export default function SearchBar({ setList, list, dataFood }) {
-  const [value, setValue] = useState("");
-
+export default function SearchBar({
+  query,
+  setQuery,
+  setData,
+  setMenu = null,
+  setOpenCard = null,
+}) {
   const handleChange = (event) => {
-    const searchWord = event.target.value;
-    setValue(searchWord);
-    const filterList = list.filter((item) =>
-      item.name.toLowerCase().includes(value.toLowerCase())
-    );
-    setList(searchWord ? filterList : dataFood);
+    setQuery(event.target.value);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (setMenu) setMenu("search");
+    if (setOpenCard) setOpenCard(true);
+    axios
+      .get(
+        `https://fr.openfoodfacts.org/cgi/search.pl?action=process&tagtype_0=categories&tag_contains_0=contains&tag_0=${query}&json=1`
+      )
+      .then((response) => {
+        setData(response.data.products);
+      })
+      .catch((error) => {
+        console.warn(error);
+      });
   };
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <Search>
-        <SearchIconWrapper>
-          <SearchIcon />
-        </SearchIconWrapper>
-        <StyledInputBase
-          placeholder="Recherche ...."
-          onChange={handleChange}
-          value={value}
-          inputProps={{ "aria-label": "search" }}
-          sx={{ color: "#6666" }}
-        />
-      </Search>
+      <form onSubmit={(e) => handleSubmit(e)}>
+        <SearchStyle>
+          <SearchIconWrapper>
+            <SearchIcon />
+          </SearchIconWrapper>
+          <StyledInputBase
+            placeholder="Recherche ..."
+            onChange={handleChange}
+            value={query}
+            inputProps={{ "aria-label": "search" }}
+            sx={{ color: "#6666" }}
+          />
+        </SearchStyle>
+      </form>
     </Box>
   );
 }
+
+SearchBar.propTypes = {
+  query: PropTypes.string.isRequired,
+  setQuery: PropTypes.func.isRequired,
+  setData: PropTypes.func.isRequired,
+  setMenu: PropTypes.func,
+  setOpenCard: PropTypes.func,
+};
+
+SearchBar.defaultProps = {
+  setMenu: null,
+  setOpenCard: null,
+};

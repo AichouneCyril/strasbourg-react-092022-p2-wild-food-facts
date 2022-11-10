@@ -4,7 +4,6 @@ import {
   styled,
   Typography,
   Card,
-  CardHeader,
   CardMedia,
   CardContent,
   CardActions,
@@ -30,7 +29,7 @@ const ExpandMore = styled((props) => {
 }));
 
 const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: "green",
+  backgroundColor: "#32B768",
   ...theme.typography.body2,
   padding: theme.spacing(1),
   textAlign: "center",
@@ -46,14 +45,14 @@ function ItemFiche({ product }) {
   return (
     product && (
       <Card sx={{ maxWidth: "100%" }} className="DisplayItem">
-        <CardHeader
-          title={product.generic_name}
-          variant="h1"
-          sx={{ textAlign: "center" }}
-        />
-        <IconButton aria-label="add to favorites" sx={{}}>
-          <FavoriteIcon />
-        </IconButton>
+        <Typography sx={{ textAlign: "center", fontSize: "40px" }}>
+          {product.generic_name}
+        </Typography>
+        <Box sx={{ display: "flex", justifyContent: "end" }}>
+          <IconButton aria-label="add to favorites">
+            <FavoriteIcon sx={{ fontSize: 40 }} />
+          </IconButton>
+        </Box>
         <CardMedia
           sx={{ objectFit: "contain" }}
           height="200px"
@@ -66,37 +65,43 @@ function ItemFiche({ product }) {
           <Box sx={{ flexGrow: 1 }}>
             <Grid container spacing={2}>
               <Grid item xs={3}>
-                <Item>Poid: {product.quantity}</Item>
+                <Item sx={{ height: "50px" }}>Poid: {product.quantity}</Item>
               </Grid>
               <Grid item xs={3}>
-                <Item>Nutri score: {product.nutriscore_grade}</Item>
+                <Item sx={{ height: "50px" }}>
+                  Nutri score: {product.nutriscore_grade}
+                </Item>
               </Grid>
               <Grid item xs={3}>
-                <Item>Eco score: {product.ecoscore_grade}</Item>
+                <Item sx={{ height: "50px" }}>
+                  Eco score: {product.ecoscore_grade}
+                </Item>
               </Grid>
               <Grid item xs={3}>
-                <Item>Nova score: {product.nova_group}</Item>
+                <Item sx={{ height: "50px" }}>
+                  Nova score: {product.nova_group}
+                </Item>
               </Grid>
               <Grid item xs={3}>
-                <Item>
+                <Item sx={{ height: "50px" }}>
                   {product.nutriments["energy-kcal_100g"]}{" "}
                   {product.nutriments["energy-kcal_unit"]}
                 </Item>
               </Grid>
               <Grid item xs={3}>
-                <Item>
+                <Item sx={{ height: "50px" }}>
                   Protein: {product.nutriments.proteins_100g}{" "}
                   {product.nutriments.proteins_unit}
                 </Item>
               </Grid>
               <Grid item xs={3}>
-                <Item>
+                <Item sx={{ height: "50px" }}>
                   Calcium: {product.nutriments.calcium_100g}{" "}
                   {product.nutriments.calcium_unit}
                 </Item>
               </Grid>
               <Grid item xs={3}>
-                <Item>
+                <Item sx={{ height: "50px" }}>
                   Fer: {product.nutriments.iron_100g}{" "}
                   {product.nutriments.iron_unit}
                 </Item>
@@ -119,7 +124,7 @@ function ItemFiche({ product }) {
             <Typography
               paragraph
               sx={{
-                backgroundColor: "green",
+                backgroundColor: "#32B768",
                 color: "white",
                 borderRadius: "10px",
                 textAlign: "center",
@@ -130,7 +135,7 @@ function ItemFiche({ product }) {
             <Typography
               paragraph
               sx={{
-                backgroundColor: "green",
+                backgroundColor: "#32B768",
                 color: "white",
                 borderRadius: "10px",
                 textAlign: "center",
