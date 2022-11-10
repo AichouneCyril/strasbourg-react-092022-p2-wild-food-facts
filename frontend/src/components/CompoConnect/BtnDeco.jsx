@@ -4,9 +4,9 @@ import Button from "@mui/material/Button";
 import PropTypes from "prop-types";
 
 export default function BtnDeco({ setConnect }) {
-  function handleClick() {
+  const handleClick = () => {
     setConnect(false);
-  }
+  };
   return (
     <Stack
       spacing={2}
@@ -31,7 +31,4 @@ export default function BtnDeco({ setConnect }) {
 
 BtnDeco.propTypes = {
   setConnect: PropTypes.element.isRequired,
-  handleClick.propTypes = {
-    onClick: PropTypes.element.isRequired,
-  },
 };

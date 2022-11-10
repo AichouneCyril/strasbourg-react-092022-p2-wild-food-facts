@@ -4,9 +4,9 @@ import Button from "@mui/material/Button";
 import PropTypes from "prop-types";
 
 export default function RetourInscrit({ clicretour }) {
-  function handleClick() {
+  const handleClick = () => {
     clicretour(false);
-  }
+  };
   return (
     <Stack
       spacing={2}
@@ -22,9 +22,4 @@ export default function RetourInscrit({ clicretour }) {
 
 RetourInscrit.propTypes = {
   clicretour: PropTypes.element.isRequired,
-    handleClick.propTypes = {
-      onClick: PropTypes.element.isRequired,
-    },
 };
-
-
