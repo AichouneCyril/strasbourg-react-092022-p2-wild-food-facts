@@ -1,9 +1,9 @@
-import { useState } from "react";
-// import FiltersList from "./components/Filters/FiltersList";
+import React, { useState } from "react";
 import PageCard from "./components/PageCard";
 import Navbar from "./components/Navbar";
 import ThemeProvider from "./theme";
 import Home from "./pages/Home";
+import "./App.css";
 import SearchResultsPage from "./pages/SearchResultsPage";
 
 function App() {
@@ -22,9 +22,6 @@ function App() {
           query={query}
           setQuery={setQuery}
         />
-        {/* <PageCard>
-          <FiltersList />
-        </PageCard> */}
         <Navbar changeMenu={setMenu} changeOpen={setOpen} />
         {menu && menu !== "home" && (
           <PageCard changeMenu={setMenu} etatOpen={open} changeOpen={setOpen}>
