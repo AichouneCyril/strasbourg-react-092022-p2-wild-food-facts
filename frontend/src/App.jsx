@@ -8,6 +8,7 @@ import ThemeProvider from "./theme";
 import Home from "./pages/Home";
 import "./App.css";
 import SearchResultsPage from "./pages/SearchResultsPage";
+// import CompareCarousel from "./components/CompareElments/CompareCarousel";
 
 function App() {
   const [menu, setMenu] = useState("home");
