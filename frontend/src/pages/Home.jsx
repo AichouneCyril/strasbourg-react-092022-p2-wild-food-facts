@@ -1,36 +1,69 @@
-import Counter from "../components/Counter";
-import logo from "../assets/logo.svg";
+import { Typography, Box } from "@mui/material";
+import PropTypes from "prop-types";
 
-export default function Home() {
+import SearchBar from "../components/SearchBar";
+
+export default function Home({
+  query,
+  setQuery,
+  setData,
+  setMenu,
+  setOpenCard,
+}) {
   return (
-    <header className="App-header">
-      <img src={logo} className="App-logo" alt="logo" />
-      <p>Hello Vite + React !</p>
-
-      <Counter />
-
-      <p>
-        Edit <code>App.jsx</code> and save to test HMR updates.
-      </p>
-      <p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <div>
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "space-between",
+          alignItems: "center",
+          gap: "2rem",
+          paddingTop: 10,
+          minHeight: "100vh",
+          backgroundColor: "primary.main",
+        }}
+      >
+        <Box
+          sx={{
+            width: "100%",
+            maxWidth: 300,
+            textAlign: "center",
+          }}
         >
-          Learn React
-        </a>
-        {" | "}
-        <a
-          className="App-link"
-          href="https://vitejs.dev/guide/features.html"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Vite Docs
-        </a>
-      </p>
-    </header>
+          <Typography
+            gutterBottom
+            sx={{
+              color: "primary.light",
+              fontFamily: "Impact",
+              lineHeight: 0.8,
+              fontSize: 100,
+            }}
+          >
+            WILD FOOD FACTS
+          </Typography>
+        </Box>
+        <SearchBar
+          setData={setData}
+          setMenu={setMenu}
+          query={query}
+          setQuery={setQuery}
+          setOpenCard={setOpenCard}
+        />
+      </Box>
+    </div>
   );
 }
+
+Home.propTypes = {
+  query: PropTypes.string.isRequired,
+  setQuery: PropTypes.func.isRequired,
+  setData: PropTypes.func.isRequired,
+  setMenu: PropTypes.func,
+  setOpenCard: PropTypes.func,
+};
+
+Home.defaultProps = {
+  setMenu: null,
+  setOpenCard: null,
+};
