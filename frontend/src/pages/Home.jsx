@@ -64,9 +64,11 @@ Home.propTypes = {
   setData: PropTypes.func.isRequired,
   setMenu: PropTypes.func,
   setOpenCard: PropTypes.func,
+  setItem: PropTypes.func,
 };
 
 Home.defaultProps = {
   setMenu: null,
   setOpenCard: null,
+  setItem: null,
 };
