@@ -46,7 +46,7 @@ function ItemFiche({ product }) {
     product && (
       <Card sx={{ maxWidth: "100%" }} className="DisplayItem">
         <Typography sx={{ textAlign: "center", fontSize: "40px" }}>
-          {product.generic_name}
+          {product.product_name}
         </Typography>
         <Box sx={{ display: "flex", justifyContent: "end" }}>
           <IconButton aria-label="add to favorites">
@@ -130,7 +130,7 @@ function ItemFiche({ product }) {
                 textAlign: "center",
               }}
             >
-              Provance:{product.origins}
+              Provenance:{product.origins}
             </Typography>
             <Typography
               paragraph
