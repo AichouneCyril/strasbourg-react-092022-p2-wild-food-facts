@@ -89,7 +89,9 @@ function ResultsList({ filters, data }) {
               name={item.product_name}
               id={item.id}
               image={item.selected_images.front.small.fr}
-              category={item.categories ? item.categories : "inconnu"}
+              category={
+                item.categories ? item.categories.split(", ")[0] : "inconnu"
+              }
               nutriscore={
                 item.nutriscore_grade
                   ? item.nutriscore_grade.toUpperCase()
