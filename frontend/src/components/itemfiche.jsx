@@ -84,7 +84,7 @@ function ItemFiche({ product }) {
               </Grid>
               <Grid item xs={3}>
                 <Item sx={{ height: "50px" }}>
-                  {product.nutriments["energy-kcal_100g"]}{" "}
+                  {product.nutriments["energy-kcal_100g"]}
                   {product.nutriments["energy-kcal_unit"]}
                 </Item>
               </Grid>
