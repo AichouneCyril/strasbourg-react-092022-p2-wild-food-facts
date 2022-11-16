@@ -54,6 +54,7 @@ export default function SearchBar({
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setData();
     if (setMenu) setMenu("search");
     if (setOpenCard) setOpenCard(true);
     axios

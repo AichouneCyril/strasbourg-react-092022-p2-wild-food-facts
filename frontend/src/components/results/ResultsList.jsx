@@ -4,6 +4,7 @@ import { Box, Divider } from "@mui/material";
 import ResultItem from "./ResultItem";
 // import data from "./data.json";
 import ItemFiche from "../itemfiche";
+import Loading from "../Loading";
 
 function ResultsList({ filters, data }) {
   const [activeFilters, setActiveFilters] = useState([]);
@@ -71,6 +72,8 @@ function ResultsList({ filters, data }) {
     getProductInformations(id);
     setDisplayedProductId(id);
   };
+
+  if (!results) return <Loading />;
 
   return (
     <Box>
