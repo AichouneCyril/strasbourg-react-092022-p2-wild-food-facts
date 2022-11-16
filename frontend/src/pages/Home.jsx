@@ -9,6 +9,7 @@ export default function Home({
   setData,
   setMenu,
   setOpenCard,
+  setItem,
 }) {
   return (
     <div>
@@ -43,12 +44,14 @@ export default function Home({
             WILD FOOD FACTS
           </Typography>
         </Box>
+
         <SearchBar
           setData={setData}
           setMenu={setMenu}
           query={query}
           setQuery={setQuery}
           setOpenCard={setOpenCard}
+          setItem={setItem}
         />
       </Box>
     </div>
