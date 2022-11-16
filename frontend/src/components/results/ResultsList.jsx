@@ -4,6 +4,7 @@ import { Box, Divider } from "@mui/material";
 import ResultItem from "./ResultItem";
 // import data from "./data.json";
 import ItemFiche from "../itemfiche";
+import CompareCarousel from "../CompareElments/CompareCarousel";
 
 function ResultsList({ filters, data }) {
   const [activeFilters, setActiveFilters] = useState([]);
@@ -73,9 +74,12 @@ function ResultsList({ filters, data }) {
   };
 
   return (
-    <Box>
+    <Box sx={{ maxWidth: "100vw" }}>
       {productDisplayedId && (
-        <ItemFiche product={getProductInformations(productDisplayedId)} />
+        <>
+          <ItemFiche product={getProductInformations(productDisplayedId)} />
+          <CompareCarousel product={results} />
+        </>
       )}
       {!productDisplayedId &&
         results &&
@@ -85,8 +89,12 @@ function ResultsList({ filters, data }) {
               name={item.product_name}
               id={item.id}
               image={item.selected_images.front.small.fr}
-              category={item.category_properties["ciqual_food_name:fr"]}
-              nutriscore={item.nutriscore_grade.toUpperCase()}
+              category={item.categories ? item.categories : "inconnu"}
+              nutriscore={
+                item.nutriscore_grade
+                  ? item.nutriscore_grade.toUpperCase()
+                  : "inconnu"
+              }
               displayProduct={handleDisplayProduct}
             />
             <Divider textAlign="center" />

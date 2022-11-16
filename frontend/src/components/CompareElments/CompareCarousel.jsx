@@ -20,15 +20,15 @@ function CarouselCompare({ product }) {
         spacing={3}
         style={{ overflowX: "scroll", height: "100%", width: "100%" }}
       >
-        {[...Array(24).keys()].map((value) => (
+        {product.map((item) => (
           <Card
-            key={value}
+            key={item.id}
             item
             style={{ width: "100%", minWidth: "310px" }}
             className="DisplayItem"
           >
             <CardHeader
-              title={product.generic_name}
+              title={item.generic_name}
               variant="h1"
               sx={{ textAlign: "center" }}
             />
@@ -39,18 +39,17 @@ function CarouselCompare({ product }) {
               sx={{ objectFit: "contain" }}
               height="200px"
               component="img"
-              image={product.image_url}
-              alt={product.generic_name}
+              image={item.image_url}
+              alt={item.generic_name}
             />
-
             <CardContent>
               <Box>
                 <Stack direction="row" spacing={2}>
                   <Button variant="text">
-                    Nutri score: {product.nutriscore_grade}
+                    Nutri score: {item.nutriscore_grade}
                   </Button>
-                  <Button>Eco score: {product.ecoscore_grade}</Button>
-                  <Button>Nova score: {product.nova_group}</Button>
+                  <Button>Eco score: {item.ecoscore_grade}</Button>
+                  <Button>Nova score: {item.nova_group}</Button>
                 </Stack>
               </Box>
             </CardContent>
