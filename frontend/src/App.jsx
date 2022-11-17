@@ -1,16 +1,18 @@
-import { useState } from "react";
-// import FiltersList from "./components/Filters/FiltersList";
+import React, { useState } from "react";
 import PageCard from "./components/PageCard";
 import Navbar from "./components/Navbar";
 import ThemeProvider from "./theme";
 import Home from "./pages/Home";
+import "./App.css";
 import SearchResultsPage from "./pages/SearchResultsPage";
+import ItemFiche from "./components/itemfiche";
 
 function App() {
   const [menu, setMenu] = useState("home");
   const [open, setOpen] = useState(true);
   const [query, setQuery] = useState("");
   const [data, setData] = useState();
+  const [item, setItem] = useState("");
 
   return (
     <ThemeProvider>
@@ -21,10 +23,8 @@ function App() {
           setMenu={setMenu}
           query={query}
           setQuery={setQuery}
+          setItem={setItem}
         />
-        {/* <PageCard>
-          <FiltersList />
-        </PageCard> */}
         <Navbar changeMenu={setMenu} changeOpen={setOpen} />
         {menu && menu !== "home" && (
           <PageCard changeMenu={setMenu} etatOpen={open} changeOpen={setOpen}>
@@ -34,6 +34,11 @@ function App() {
               query={query}
               setQuery={setQuery}
             />
+          </PageCard>
+        )}
+        {menu && menu === "codebarsearch" && (
+          <PageCard changeMenu={setMenu} etatOpen={open} changeOpen={setOpen}>
+            <ItemFiche product={item} />
           </PageCard>
         )}
       </div>
