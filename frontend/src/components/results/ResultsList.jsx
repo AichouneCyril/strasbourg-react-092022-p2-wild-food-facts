@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { Box, Divider } from "@mui/material";
+import Variants from "../Skeleton";
 import ResultItem from "./ResultItem";
 // import data from "./data.json";
 import ItemFiche from "../itemfiche";
@@ -89,6 +90,7 @@ function ResultsList({ filters, data }) {
     setDisplayedProductId(id);
   };
 
+  if (!results) return <Variants />;
   return (
     <Box sx={{ maxWidth: "100vw" }}>
       {productDisplayedId && (
