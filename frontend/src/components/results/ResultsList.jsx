@@ -12,8 +12,24 @@ function ResultsList({ filters, data }) {
   const [productDisplayedId, setDisplayedProductId] = useState(null);
 
   useEffect(() => {
-    setResults(data);
-  }, [data]);
+    if (productDisplayedId) {
+      const newData = [];
+      // eslint-disable-next-line array-callback-return
+      data.filter((product) => {
+        if (productDisplayedId === product.id) {
+          newData.push(product);
+        }
+      });
+      // eslint-disable-next-line array-callback-return
+      data.map((product) => {
+        // eslint-disable-next-line no-unused-expressions, eqeqeq
+        productDisplayedId != product.id ? newData.push(product) : "";
+      });
+      setResults(newData);
+    } else {
+      setResults(data);
+    }
+  }, [data, productDisplayedId]);
 
   // setting the activefilters depending on the state of filters
   useEffect(() => {
@@ -78,7 +94,10 @@ function ResultsList({ filters, data }) {
       {productDisplayedId && (
         <>
           <ItemFiche product={getProductInformations(productDisplayedId)} />
-          <CompareCarousel product={results} />
+          <CompareCarousel
+            displayProduct={handleDisplayProduct}
+            product={results.slice(1, 23)}
+          />
         </>
       )}
       {!productDisplayedId &&
