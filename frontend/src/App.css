@@ -33,9 +33,7 @@ button {
       width: 8px;
       height: 8px;
   }
-  *::-webkit-scrollbar-track {
-      background: #91C788;
-  }
+
   *::-webkit-scrollbar-thumb {
       background-color: #32B768;
       border-radius: 25px;
