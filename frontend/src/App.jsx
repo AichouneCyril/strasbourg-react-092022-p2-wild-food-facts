@@ -6,6 +6,10 @@ import Home from "./pages/Home";
 import "./App.css";
 import SearchResultsPage from "./pages/SearchResultsPage";
 import ItemFiche from "./components/itemfiche";
+import FavoriCard from "./components/FavoriCard";
+import FavoriList from "./components/FavoriList";
+import ConnectCard from "./components/ConnectCard";
+import AllConnect from "./components/AllConnect";
 
 function App() {
   const [menu, setMenu] = useState("home");
@@ -26,7 +30,7 @@ function App() {
           setItem={setItem}
         />
         <Navbar changeMenu={setMenu} changeOpen={setOpen} />
-        {menu && menu !== "home" && (
+        {menu && menu === "search" && (
           <PageCard changeMenu={setMenu} etatOpen={open} changeOpen={setOpen}>
             <SearchResultsPage
               data={data}
@@ -36,10 +40,21 @@ function App() {
             />
           </PageCard>
         )}
+
         {menu && menu === "codebarsearch" && (
           <PageCard changeMenu={setMenu} etatOpen={open} changeOpen={setOpen}>
             <ItemFiche product={item} />
           </PageCard>
+        )}
+        {menu && menu === "favorite" && (
+          <FavoriCard etatOpen={open} changeOpen={setOpen}>
+            <FavoriList />
+          </FavoriCard>
+        )}
+        {menu && menu === "account" && (
+          <ConnectCard etatOpen={open} changeOpen={setOpen}>
+            <AllConnect />
+          </ConnectCard>
         )}
       </div>
     </ThemeProvider>
