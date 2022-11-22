@@ -31,7 +31,7 @@ export default function Connection() {
           ) : (
             <>
               <Typography sx={{ color: "primary.main", textAlign: "center" }}>
-                Connecte toi ma gueule
+                Connecte toi ici !
               </Typography>
               <EmailConnect />
               <PwordConnect />
