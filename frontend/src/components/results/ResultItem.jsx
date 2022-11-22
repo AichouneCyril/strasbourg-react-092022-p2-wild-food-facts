@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
+import axios from "axios";
 import { Box, Card, CardContent, CardMedia, Typography } from "@mui/material";
 // import {
 //   Brightness1Icon,
@@ -18,11 +19,29 @@ function ResultItem({
   category,
   nutriscore,
   displayProduct,
+  favorites,
+  setFavorites,
 }) {
-  const [isFavorite, setIsFavorite] = useState(false);
-
+  const [isFavorite, setIsFavorite] = useState(
+    favorites.filter((favorite) => favorite.id === id).length !== 0
+  );
   const handleClick = () => {
-    setIsFavorite(!isFavorite);
+    if (!isFavorite) {
+      axios
+        .get(`https://world.openfoodfacts.org/api/v2/product/${id}`)
+        .then((response) => {
+          setFavorites([...favorites, response.data.product]);
+          setIsFavorite(true);
+        })
+        .catch((error) => {
+          console.warn(error);
+        });
+    }
+
+    if (isFavorite) {
+      setFavorites(favorites.filter((favorite) => favorite.id !== id));
+      setIsFavorite(false);
+    }
   };
 
   const getNutriScoreColor = (score) => {
@@ -38,7 +57,6 @@ function ResultItem({
 
   return (
     <Card
-      onClick={() => displayProduct(id)}
       sx={{
         boxShadow: "none",
         minHeight: "100px",
@@ -50,7 +68,13 @@ function ResultItem({
         marginBottom: "1rem",
       }}
     >
-      <Box display="flex" alignItems="center" gap=".5rem">
+      <Box
+        display="flex"
+        alignItems="center"
+        gap=".5rem"
+        onClick={() => displayProduct(id)}
+        sx={{ width: "100%", cursor: "pointer" }}
+      >
         <CardMedia
           component="img"
           height="100px"
@@ -100,6 +124,8 @@ ResultItem.propTypes = {
   category: PropTypes.string.isRequired,
   nutriscore: PropTypes.string,
   displayProduct: PropTypes.func.isRequired,
+  favorites: PropTypes.arrayOf(PropTypes.obj).isRequired,
+  setFavorites: PropTypes.func.isRequired,
 };
 
 ResultItem.defaultProps = {
