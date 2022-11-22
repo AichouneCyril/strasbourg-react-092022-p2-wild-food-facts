@@ -47,16 +47,16 @@ function CarouselCompare({ displayProduct, product }) {
                 <Stack direction="row" spacing={2}>
                   <Button
                     variant="text"
-                    sx={{ bgcolor: "primary.main", color: "inherit" }}
+                    sx={{ bgcolor: "primary.main", color: "white" }}
                   >
                     Nutri score:{" "}
                     {item.nutriscore_grade ? item.nutriscore_grade : "None"}
                   </Button>
-                  <Button sx={{ bgcolor: "primary.main", color: "inherit" }}>
+                  <Button sx={{ bgcolor: "primary.main", color: "white" }}>
                     Eco score:{" "}
                     {item.ecoscore_grade ? item.ecoscore_grade : "None"}
                   </Button>
-                  <Button sx={{ bgcolor: "primary.main", color: "inherit" }}>
+                  <Button sx={{ bgcolor: "primary.main", color: "white" }}>
                     Nova score: {item.nova_group ? item.nova_group : "None"}
                   </Button>
                 </Stack>
