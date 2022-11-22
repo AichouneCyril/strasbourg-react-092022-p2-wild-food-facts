@@ -29,7 +29,7 @@ export default function FavoriCard({ children, etatOpen, changeOpen }) {
 
       <Box
         sx={{
-          left: "75vh",
+          right: "75vh",
           paddingLeft: "0",
         }}
       >
