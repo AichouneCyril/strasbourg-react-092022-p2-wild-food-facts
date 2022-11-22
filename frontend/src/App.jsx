@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import PageCard from "./components/PageCard";
 import Navbar from "./components/Navbar";
 import ThemeProvider from "./theme";
@@ -16,7 +16,17 @@ function App() {
   const [open, setOpen] = useState(true);
   const [query, setQuery] = useState("");
   const [data, setData] = useState();
+  const [favorites, setFavorites] = useState([]);
   const [item, setItem] = useState("");
+
+  useEffect(() => {
+    setFavorites(JSON.parse(window.localStorage.getItem("MY_FAVORITES")) || []);
+  }, []);
+
+  useEffect(() => {
+    if (favorites.length !== 0)
+      window.localStorage.setItem("MY_FAVORITES", JSON.stringify(favorites));
+  }, [favorites]);
 
   return (
     <ThemeProvider>
@@ -37,6 +47,8 @@ function App() {
               setData={setData}
               query={query}
               setQuery={setQuery}
+              favorites={favorites}
+              setFavorites={setFavorites}
             />
           </PageCard>
         )}
@@ -48,7 +60,7 @@ function App() {
         )}
         {menu && menu === "favorite" && (
           <FavoriCard etatOpen={open} changeOpen={setOpen}>
-            <FavoriList />
+            <FavoriList favorites={favorites} setFavorites={setFavorites} />
           </FavoriCard>
         )}
         {menu && menu === "account" && (

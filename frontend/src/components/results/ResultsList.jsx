@@ -7,7 +7,7 @@ import ResultItem from "./ResultItem";
 import ItemFiche from "../itemfiche";
 import CompareCarousel from "../CompareElments/CompareCarousel";
 
-function ResultsList({ filters, data }) {
+function ResultsList({ filters, data, setFavorites, favorites }) {
   const [activeFilters, setActiveFilters] = useState([]);
   const [results, setResults] = useState([]);
   const [productDisplayedId, setDisplayedProductId] = useState(null);
@@ -109,6 +109,8 @@ function ResultsList({ filters, data }) {
             <ResultItem
               name={item.product_name}
               id={item.id}
+              favorites={favorites}
+              setFavorites={setFavorites}
               image={item.selected_images.front.small.fr}
               category={
                 item.categories ? item.categories.split(", ")[0] : "inconnu"
@@ -135,6 +137,8 @@ ResultsList.propTypes = {
     })
   ).isRequired,
   data: PropTypes.arrayOf(PropTypes.obj).isRequired,
+  favorites: PropTypes.arrayOf(PropTypes.obj).isRequired,
+  setFavorites: PropTypes.func.isRequired,
 };
 
 export default ResultsList;
