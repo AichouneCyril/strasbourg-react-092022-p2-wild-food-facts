@@ -57,7 +57,7 @@ function Compte({ setConnect }) {
           justifyContent: "center",
         }}
       >
-        Joe le Clodo
+        Goe le Frey
       </Typography>
       <MenuProfil />
       <BtnDeco setConnect={setConnect} />
