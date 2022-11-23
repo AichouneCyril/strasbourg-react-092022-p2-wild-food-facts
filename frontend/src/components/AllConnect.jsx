@@ -31,7 +31,7 @@ export default function Connection() {
           ) : (
             <>
               <Typography sx={{ color: "primary.main", textAlign: "center" }}>
-                Connecte toi ma gueule
+                Connecte toi ici !
               </Typography>
               <EmailConnect />
               <PwordConnect />
@@ -57,7 +57,7 @@ function Compte({ setConnect }) {
           justifyContent: "center",
         }}
       >
-        Joe le Clodo
+        Goe le Frey
       </Typography>
       <MenuProfil />
       <BtnDeco setConnect={setConnect} />

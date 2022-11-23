@@ -1,18 +1,36 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { Box, Divider } from "@mui/material";
+import Variants from "../Skeleton";
 import ResultItem from "./ResultItem";
 // import data from "./data.json";
 import ItemFiche from "../itemfiche";
+import CompareCarousel from "../CompareElments/CompareCarousel";
 
-function ResultsList({ filters, data }) {
+function ResultsList({ filters, data, setFavorites, favorites }) {
   const [activeFilters, setActiveFilters] = useState([]);
   const [results, setResults] = useState([]);
   const [productDisplayedId, setDisplayedProductId] = useState(null);
 
   useEffect(() => {
-    setResults(data);
-  }, [data]);
+    if (productDisplayedId) {
+      const newData = [];
+      // eslint-disable-next-line array-callback-return
+      data.filter((product) => {
+        if (productDisplayedId === product.id) {
+          newData.push(product);
+        }
+      });
+      // eslint-disable-next-line array-callback-return
+      data.map((product) => {
+        // eslint-disable-next-line no-unused-expressions, eqeqeq
+        productDisplayedId != product.id ? newData.push(product) : "";
+      });
+      setResults(newData);
+    } else {
+      setResults(data);
+    }
+  }, [data, productDisplayedId]);
 
   // setting the activefilters depending on the state of filters
   useEffect(() => {
@@ -72,10 +90,17 @@ function ResultsList({ filters, data }) {
     setDisplayedProductId(id);
   };
 
+  if (!results) return <Variants />;
   return (
-    <Box>
+    <Box sx={{ maxWidth: "100vw" }}>
       {productDisplayedId && (
-        <ItemFiche product={getProductInformations(productDisplayedId)} />
+        <>
+          <ItemFiche product={getProductInformations(productDisplayedId)} />
+          <CompareCarousel
+            displayProduct={handleDisplayProduct}
+            product={results.slice(1, 23)}
+          />
+        </>
       )}
       {!productDisplayedId &&
         results &&
@@ -84,9 +109,17 @@ function ResultsList({ filters, data }) {
             <ResultItem
               name={item.product_name}
               id={item.id}
+              favorites={favorites}
+              setFavorites={setFavorites}
               image={item.selected_images.front.small.fr}
-              category={item.category_properties["ciqual_food_name:fr"]}
-              nutriscore={item.nutriscore_grade.toUpperCase()}
+              category={
+                item.categories ? item.categories.split(", ")[0] : "inconnu"
+              }
+              nutriscore={
+                item.nutriscore_grade
+                  ? item.nutriscore_grade.toUpperCase()
+                  : "inconnu"
+              }
               displayProduct={handleDisplayProduct}
             />
             <Divider textAlign="center" />
@@ -104,6 +137,8 @@ ResultsList.propTypes = {
     })
   ).isRequired,
   data: PropTypes.arrayOf(PropTypes.obj).isRequired,
+  favorites: PropTypes.arrayOf(PropTypes.obj).isRequired,
+  setFavorites: PropTypes.func.isRequired,
 };
 
 export default ResultsList;
